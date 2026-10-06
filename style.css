@@ -7,9 +7,10 @@ body {
 }
 
 main {
+ 
   width: min(90%, 850px);
   margin: 0 auto;
-  padding: 100px 20px;
+  padding: 60px 20px;
 }
 
 h1 {
@@ -28,4 +29,11 @@ p {
   height: auto;
   display: block;
   margin: 0 auto 28px;
+}
+.logo {
+  width: 120px !important;
+  max-width: 120px !important;
+  height: auto !important;
+  display: block;
+  margin: 0 auto 24px;
 }
