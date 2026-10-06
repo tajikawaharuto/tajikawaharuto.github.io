@@ -118,3 +118,47 @@ h1 {
     width: 100%;
   }
 }
+.home-works {
+  margin: 70px auto 0;
+  max-width: 700px;
+  background: #3f3f3f;
+  padding: 55px 40px 80px;
+  box-sizing: border-box;
+}
+
+.work-link {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto 70px;
+  color: #aaa;
+  text-decoration: none;
+}
+
+.work-link:last-child {
+  margin-bottom: 0;
+}
+
+.work-link img {
+  display: block;
+  max-width: 100%;
+  width: 360px;
+  height: auto;
+  margin: 0 auto;
+  transition: opacity 0.2s ease;
+}
+
+.work-link p {
+  margin-top: 16px;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.work-link:hover img {
+  opacity: 0.7;
+}
+
+.work-link:hover {
+  color: #fff;
+}
