@@ -31,9 +31,10 @@ p {
   margin: 0 auto 28px;
 }
 .logo {
-  width: 120px !important;
-  max-width: 120px !important;
+  width: 140px !important;
+  max-width: 140px !important;
   height: auto !important;
   display: block;
   margin: 0 auto 24px;
+
 }
