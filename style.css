@@ -7,34 +7,27 @@ body {
 }
 
 main {
- 
   width: min(90%, 850px);
   margin: 0 auto;
-  padding: 60px 20px;
+  padding: 100px 20px;
+}
+
+.logo {
+  width: 140px;
+  height: auto;
+  display: block;
+  margin: 0 auto 28px;
 }
 
 h1 {
   font-size: 42px;
   font-weight: normal;
   letter-spacing: 0.12em;
-  margin-bottom: 25px;
+  margin: 0;
 }
 
-p {
-  font-size: 14px;
-  color: #aaa;
-}
-
-.logo {
-  width: 140px !important;
-  max-width: 140px !important;
-  height: auto !important;
-  display: block;
-  margin: 0 auto 24px;
-
-}
 .menu {
-  margin-top: 28px;
+  margin-top: 30px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
