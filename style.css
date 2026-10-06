@@ -200,7 +200,6 @@ margin-bottom: 10px;
   width: 500px;
 }
 
-@media (max-width: 700px) {
 .news-box {
   display: block;
   width: 820px;
@@ -210,4 +209,15 @@ margin-bottom: 10px;
   background: #3f3f3f !important;
   box-sizing: border-box;
   text-align: left !important;
+}
+
+@media (max-width: 700px) {
+  .news-box {
+    width: 100%;
+    padding: 35px 22px 15px;
+  }
+
+  .news-item {
+    font-size: 12px;
+  }
 }
