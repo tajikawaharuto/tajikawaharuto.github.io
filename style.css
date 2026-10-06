@@ -23,3 +23,9 @@ p {
   font-size: 14px;
   color: #aaa;
 }
+.logo {
+  width: 110px;
+  height: auto;
+  display: block;
+  margin: 0 auto 28px;
+}
