@@ -1,47 +1,174 @@
-<section class="manga-viewer">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>熊よ｜多治川晴人</title>
+  <link rel="stylesheet" href="style.css">
 
-  <button class="page-area next-page" aria-label="次のページ"></button>
+  <style>
+    .manga-viewer {
+      position: relative;
+      margin: 70px auto 0;
+      max-width: 1000px;
+      text-align: center;
+      user-select: none;
+    }
 
-  <img id="manga-page"
-       src="kumayo-01.jpg"
-       alt="熊よ">
+    .manga-stage {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+    }
 
-  <button class="page-area prev-page" aria-label="前のページ"></button>
+    #manga-page {
+      display: block;
+      max-width: 100%;
+      max-height: 82vh;
+      width: auto;
+      height: auto;
+      margin: 0 auto;
+    }
 
-  <p id="page-count">1 / 20</p>
+    .page-zone {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 50%;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
 
-</section>
+    /* 日本漫画式：左を押すと次へ */
+    .next-zone {
+      left: 0;
+    }
 
-<script>
-const pages = [
-  "kumayo-01.jpg",
-  "kumayo-02.jpg",
-  "kumayo-03.jpg",
-  "kumayo-04.jpg"
-  // 続きをここに追加
-];
+    /* 右を押すと前へ */
+    .prev-zone {
+      right: 0;
+    }
 
-let currentPage = 0;
+    #page-count {
+      margin-top: 16px;
+      color: #888;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+    }
 
-const image = document.getElementById("manga-page");
-const count = document.getElementById("page-count");
+    .reader-help {
+      margin-top: 8px;
+      color: #666;
+      font-size: 11px;
+    }
+  </style>
+</head>
 
-function showPage() {
-  image.src = pages[currentPage];
-  count.textContent = `${currentPage + 1} / ${pages.length}`;
-}
+<body>
+  <main>
+    <img src="cheese-logo.png" alt="多治川晴人ロゴ" class="logo">
+    <h1>熊よ</h1>
 
-document.querySelector(".next-page").addEventListener("click", () => {
-  if (currentPage < pages.length - 1) {
-    currentPage++;
+    <nav class="menu">
+      <a href="index.html">HOME</a>
+      <a href="news.html">NEWS</a>
+      <a href="comic.html">COMIC</a>
+      <a href="illustration.html">ILLUSTRATION</a>
+      <a href="journal.html">JOURNAL</a>
+      <a href="profile.html">PROFILE</a>
+    </nav>
+
+    <section class="manga-viewer">
+
+      <div class="manga-stage">
+        <img
+          id="manga-page"
+          src="熊よ同人用B54_003.jpg"
+          alt="熊よ 3ページ"
+        >
+
+        <button class="page-zone next-zone" aria-label="次のページ"></button>
+        <button class="page-zone prev-zone" aria-label="前のページ"></button>
+      </div>
+
+      <p id="page-count">3 / 49</p>
+      <p class="reader-help">左クリック：次へ　右側クリック：戻る</p>
+
+    </section>
+  </main>
+
+  <script>
+    const firstPage = 3;
+    const lastPage = 49;
+
+    const pages = Array.from(
+      { length: lastPage - firstPage + 1 },
+      (_, i) => {
+        const pageNumber = firstPage + i;
+        const fileNumber = String(pageNumber).padStart(3, "0");
+
+        return {
+          pageNumber: pageNumber,
+          src: `熊よ同人用B54_${fileNumber}.jpg`
+        };
+      }
+    );
+
+    let current = 0;
+
+    const image = document.getElementById("manga-page");
+    const count = document.getElementById("page-count");
+    const nextZone = document.querySelector(".next-zone");
+    const prevZone = document.querySelector(".prev-zone");
+
+    function showPage() {
+      const page = pages[current];
+
+      image.src = page.src;
+      image.alt = `熊よ ${page.pageNumber}ページ`;
+      count.textContent = `${page.pageNumber} / ${lastPage}`;
+
+      preloadNearby();
+    }
+
+    function nextPage() {
+      if (current < pages.length - 1) {
+        current++;
+        showPage();
+      }
+    }
+
+    function prevPage() {
+      if (current > 0) {
+        current--;
+        showPage();
+      }
+    }
+
+    function preloadNearby() {
+      [current - 1, current + 1].forEach(i => {
+        if (pages[i]) {
+          const img = new Image();
+          img.src = pages[i].src;
+        }
+      });
+    }
+
+    nextZone.addEventListener("click", nextPage);
+    prevZone.addEventListener("click", prevPage);
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "ArrowLeft") {
+        nextPage();
+      }
+
+      if (event.key === "ArrowRight") {
+        prevPage();
+      }
+    });
+
     showPage();
-  }
-});
-
-document.querySelector(".prev-page").addEventListener("click", () => {
-  if (currentPage > 0) {
-    currentPage--;
-    showPage();
-  }
-});
-</script>
+  </script>
+</body>
+</html>
