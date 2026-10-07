@@ -102,7 +102,79 @@
     }
 
   </style>
+/* 旧サイト風：日付上・画像左・タイトル右 */
 
+.illustration-item {
+  width: min(720px, 100%);
+  margin: 0 auto;
+  text-align: left !important;
+}
+
+.illustration-date {
+  margin: 0 0 18px !important;
+
+  color: #bbb;
+  font-size: 12px;
+
+  text-align: left !important;
+}
+
+.illustration-row {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+
+  gap: 20px;
+
+  width: 100%;
+}
+
+.illustration-row a {
+  display: block;
+
+  width: 360px;
+  max-width: 55%;
+
+  flex-shrink: 0;
+}
+
+.illustration-row img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  margin: 0 !important;
+}
+
+.illustration-title {
+  margin: 0 !important;
+
+  color: #bbb;
+  font-size: 12px;
+  line-height: 1.8;
+
+  text-align: left !important;
+}
+
+
+/* スマホだけ縦並び */
+
+@media (max-width: 700px) {
+
+  .illustration-row {
+    flex-direction: column !important;
+  }
+
+  .illustration-row a {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .illustration-title {
+    margin-top: 12px !important;
+  }
+}
 </head>
 
 
