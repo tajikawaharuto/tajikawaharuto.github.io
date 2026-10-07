@@ -1,1 +1,804 @@
+<!DOCTYPE html>
+<html lang="ja">
 
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>ムーンライトグラスランド｜多治川晴人</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+  <style>
+
+    .manga-viewer {
+      margin: 70px auto 0;
+      width: min(1000px, 92%);
+
+      padding:
+        55px
+        35px
+        45px;
+
+      background: #3f3f3f;
+
+      box-sizing: border-box;
+
+      text-align: center;
+
+      user-select: none;
+    }
+
+
+    .reader-heading {
+      margin-bottom: 40px;
+
+      color: #bbb;
+
+      font-size: 12px;
+      line-height: 1.8;
+
+      text-align: left;
+    }
+
+
+    .reader-heading h2 {
+      margin:
+        0
+        0
+        50px;
+
+      color: #ddd;
+
+      font-size: 20px;
+      font-weight: normal;
+
+      text-align: center;
+    }
+
+
+    .reader-heading p {
+      margin: 0;
+    }
+
+
+    .manga-stage {
+      position: relative;
+
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+
+      gap: 2px;
+
+      width: 100%;
+
+      margin: 0 auto;
+
+      overflow: hidden;
+    }
+
+
+    .manga-page {
+      display: block;
+
+      width: auto;
+      height: auto;
+
+      max-width: calc(50% - 1px);
+      max-height: 78vh;
+
+      object-fit: contain;
+    }
+
+
+    /* 1P目も見開き片ページと同じサイズ */
+    .manga-page.single-page {
+      max-width: calc(50% - 1px);
+    }
+
+
+    .hidden-page {
+      display: none;
+    }
+
+
+    .page-zone {
+      position: absolute;
+
+      top: 0;
+      bottom: 0;
+
+      width: 50%;
+
+      padding: 0;
+      border: 0;
+
+      background: transparent;
+
+      cursor: pointer;
+
+      z-index: 10;
+    }
+
+
+    .next-zone {
+      left: 0;
+    }
+
+
+    .prev-zone {
+      right: 0;
+    }
+
+
+    #page-count {
+      margin:
+        18px
+        0
+        0;
+
+      color: #aaa;
+
+      font-size: 12px;
+
+      letter-spacing: 0.08em;
+    }
+
+
+    .reader-help {
+      margin:
+        8px
+        0
+        0;
+
+      color: #888;
+
+      font-size: 11px;
+
+      letter-spacing: 0.04em;
+    }
+
+
+    .x-share {
+      display: inline-block;
+
+      margin-top: 28px;
+      padding: 10px 24px;
+
+      border: 1px solid #888;
+
+      color: #bbb;
+      background: transparent;
+
+      font-size: 12px;
+      letter-spacing: 0.12em;
+
+      text-decoration: none;
+
+      transition: 0.2s;
+    }
+
+
+    .x-share:hover {
+      color: #fff;
+      border-color: #fff;
+    }
+
+
+    @media
+      (max-width: 700px)
+      and (orientation: portrait) {
+
+      .manga-viewer {
+        width: 100%;
+
+        margin-top: 45px;
+
+        padding:
+          35px
+          10px
+          30px;
+      }
+
+
+      .reader-heading {
+        padding:
+          0
+          10px;
+      }
+
+
+      .reader-heading h2 {
+        margin-bottom: 35px;
+      }
+
+
+      .manga-stage {
+        display: block;
+      }
+
+
+      .manga-page {
+        width: 100%;
+
+        height: auto;
+
+        max-width: 100%;
+        max-height: none;
+
+        margin: 0 auto;
+      }
+
+
+      .manga-page.single-page {
+        max-width: 100%;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+  <main>
+
+    <img
+      src="cheese-logo.png"
+      alt="多治川晴人ロゴ"
+      class="logo"
+    >
+
+
+    <h1>
+      ムーンライトグラスランド
+    </h1>
+
+
+    <nav class="menu">
+
+      <a href="index.html">
+        HOME
+      </a>
+
+      <a href="news.html">
+        NEWS
+      </a>
+
+      <a href="comic.html">
+        COMIC
+      </a>
+
+      <a href="illustration.html">
+        ILLUSTRATION
+      </a>
+
+      <a href="journal.html">
+        JOURNAL
+      </a>
+
+      <a href="profile.html">
+        PROFILE
+      </a>
+
+    </nav>
+
+
+    <section class="manga-viewer">
+
+
+      <div class="reader-heading">
+
+        <h2>
+          ムーンライトグラスランド
+        </h2>
+
+        <p>
+          ２０２４年制作
+        </p>
+
+        <p>
+          左をクリックして読んでください
+        </p>
+
+      </div>
+
+
+      <div class="manga-stage">
+
+
+        <!-- 左：奇数ページ -->
+
+        <img
+          id="left-page"
+          class="manga-page hidden-page"
+          alt=""
+        >
+
+
+        <!-- 右：偶数ページ / 最初だけ1P -->
+
+        <img
+          id="right-page"
+          class="manga-page single-page"
+          src="moonlight_001.png"
+          alt="ムーンライトグラスランド 1ページ"
+        >
+
+
+        <button
+          type="button"
+          class="page-zone next-zone"
+          aria-label="次のページ"
+        ></button>
+
+
+        <button
+          type="button"
+          class="page-zone prev-zone"
+          aria-label="前のページ"
+        ></button>
+
+      </div>
+
+
+      <p id="page-count">
+        1 / 47
+      </p>
+
+
+      <p class="reader-help">
+        左クリック：次へ　右側クリック：戻る
+      </p>
+
+
+      <a
+        class="x-share"
+        href="https://x.com/intent/tweet?text=漫画『ムーンライトグラスランド』｜多治川晴人&url=https%3A%2F%2Ftajikawaharuto.github.io%2Fmoonlight.html"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Xで共有
+      </a>
+
+
+    </section>
+
+  </main>
+
+
+  <script>
+
+    const FIRST_PAGE = 1;
+    const LAST_PAGE = 47;
+
+    let currentPage = FIRST_PAGE;
+
+
+    const leftPage =
+      document.getElementById(
+        "left-page"
+      );
+
+
+    const rightPage =
+      document.getElementById(
+        "right-page"
+      );
+
+
+    const pageCount =
+      document.getElementById(
+        "page-count"
+      );
+
+
+    const nextZone =
+      document.querySelector(
+        ".next-zone"
+      );
+
+
+    const prevZone =
+      document.querySelector(
+        ".prev-zone"
+      );
+
+
+    function filename(pageNumber) {
+
+      const number =
+        String(pageNumber)
+          .padStart(3, "0");
+
+
+      return (
+        `moonlight_${number}.png`
+      );
+
+    }
+
+
+    function isPhonePortrait() {
+
+      return window
+        .matchMedia(
+          "(max-width: 700px) and (orientation: portrait)"
+        )
+        .matches;
+
+    }
+
+
+    function hideLeftPage() {
+
+      leftPage
+        .classList
+        .add("hidden-page");
+
+
+      leftPage
+        .classList
+        .remove("single-page");
+
+
+      leftPage
+        .removeAttribute("src");
+
+    }
+
+
+    function showSinglePage(pageNumber) {
+
+      hideLeftPage();
+
+
+      rightPage
+        .classList
+        .add("single-page");
+
+
+      rightPage.src =
+        filename(pageNumber);
+
+
+      rightPage.alt =
+        `ムーンライトグラスランド ${pageNumber}ページ`;
+
+
+      pageCount.textContent =
+        `${pageNumber} / ${LAST_PAGE}`;
+
+
+      preload(pageNumber + 1);
+
+      preload(pageNumber - 1);
+
+    }
+
+
+    function showSpread(pageNumber) {
+
+      let rightNumber;
+
+
+      if (
+        pageNumber % 2 === 0
+      ) {
+
+        rightNumber =
+          pageNumber;
+
+      } else {
+
+        rightNumber =
+          pageNumber - 1;
+
+      }
+
+
+      const leftNumber =
+        rightNumber + 1;
+
+
+      if (
+        leftNumber <= LAST_PAGE
+      ) {
+
+        leftPage
+          .classList
+          .remove(
+            "hidden-page",
+            "single-page"
+          );
+
+
+        leftPage.src =
+          filename(leftNumber);
+
+
+        leftPage.alt =
+          `ムーンライトグラスランド ${leftNumber}ページ`;
+
+      } else {
+
+        hideLeftPage();
+
+      }
+
+
+      rightPage
+        .classList
+        .remove("single-page");
+
+
+      rightPage.src =
+        filename(rightNumber);
+
+
+      rightPage.alt =
+        `ムーンライトグラスランド ${rightNumber}ページ`;
+
+
+      if (
+        leftNumber <= LAST_PAGE
+      ) {
+
+        pageCount.textContent =
+          `${rightNumber} - ${leftNumber} / ${LAST_PAGE}`;
+
+      } else {
+
+        pageCount.textContent =
+          `${rightNumber} / ${LAST_PAGE}`;
+
+      }
+
+
+      preload(
+        rightNumber + 2
+      );
+
+      preload(
+        rightNumber + 3
+      );
+
+      preload(
+        rightNumber - 1
+      );
+
+      preload(
+        rightNumber - 2
+      );
+
+    }
+
+
+    function render() {
+
+      if (
+        currentPage === FIRST_PAGE ||
+        isPhonePortrait()
+      ) {
+
+        showSinglePage(
+          currentPage
+        );
+
+      } else {
+
+        showSpread(
+          currentPage
+        );
+
+      }
+
+    }
+
+
+    function nextPage() {
+
+      if (
+        isPhonePortrait()
+      ) {
+
+        if (
+          currentPage < LAST_PAGE
+        ) {
+
+          currentPage++;
+
+          render();
+
+        }
+
+        return;
+
+      }
+
+
+      if (
+        currentPage === FIRST_PAGE
+      ) {
+
+        currentPage = 2;
+
+        render();
+
+        return;
+
+      }
+
+
+      const rightNumber =
+        currentPage % 2 === 0
+          ? currentPage
+          : currentPage - 1;
+
+
+      if (
+        rightNumber + 1 >=
+        LAST_PAGE
+      ) {
+
+        return;
+
+      }
+
+
+      currentPage =
+        rightNumber + 2;
+
+
+      render();
+
+    }
+
+
+    function prevPage() {
+
+      if (
+        isPhonePortrait()
+      ) {
+
+        if (
+          currentPage > FIRST_PAGE
+        ) {
+
+          currentPage--;
+
+          render();
+
+        }
+
+        return;
+
+      }
+
+
+      if (
+        currentPage <= FIRST_PAGE
+      ) {
+
+        return;
+
+      }
+
+
+      const rightNumber =
+        currentPage % 2 === 0
+          ? currentPage
+          : currentPage - 1;
+
+
+      if (
+        rightNumber <= 2
+      ) {
+
+        currentPage =
+          FIRST_PAGE;
+
+      } else {
+
+        currentPage =
+          rightNumber - 2;
+
+      }
+
+
+      render();
+
+    }
+
+
+    function preload(pageNumber) {
+
+      if (
+        pageNumber < FIRST_PAGE ||
+        pageNumber > LAST_PAGE
+      ) {
+
+        return;
+
+      }
+
+
+      const image =
+        new Image();
+
+
+      image.src =
+        filename(
+          pageNumber
+        );
+
+    }
+
+
+    nextZone
+      .addEventListener(
+        "click",
+        nextPage
+      );
+
+
+    prevZone
+      .addEventListener(
+        "click",
+        prevPage
+      );
+
+
+    document
+      .addEventListener(
+        "keydown",
+        event => {
+
+          if (
+            event.key ===
+            "ArrowLeft"
+          ) {
+
+            nextPage();
+
+          }
+
+
+          if (
+            event.key ===
+            "ArrowRight"
+          ) {
+
+            prevPage();
+
+          }
+
+        }
+      );
+
+
+    window
+      .addEventListener(
+        "resize",
+        render
+      );
+
+
+    render();
+
+  </script>
+
+</body>
+
+</html>
