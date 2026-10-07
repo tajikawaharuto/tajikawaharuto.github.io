@@ -11,26 +11,36 @@
 
   <title>熊よ｜多治川晴人</title>
 
+  <!-- サイト共通デザイン -->
   <link
     rel="stylesheet"
     href="style.css"
   >
 
+
+  <!-- 熊よ専用デザイン -->
   <style>
 
     /* =========================
-       漫画ビューア全体
+       漫画ビューアのグレー箱
     ========================= */
 
     .manga-viewer {
       margin: 70px auto 0;
+
       width: min(1000px, 92%);
-      padding: 55px 35px 45px;
+
+      padding:
+        55px
+        35px
+        45px;
 
       background: #3f3f3f;
 
       box-sizing: border-box;
+
       text-align: center;
+
       user-select: none;
     }
 
@@ -41,21 +51,30 @@
 
     .reader-heading {
       margin-bottom: 40px;
+
       color: #bbb;
+
       font-size: 12px;
       line-height: 1.8;
+
       text-align: left;
     }
 
+
     .reader-heading h2 {
-      margin: 0 0 55px;
+      margin:
+        0
+        0
+        50px;
 
       color: #ddd;
+
       font-size: 20px;
       font-weight: normal;
 
       text-align: center;
     }
+
 
     .reader-heading p {
       margin: 0;
@@ -63,24 +82,28 @@
 
 
     /* =========================
-       漫画表示部分
+       漫画表示領域
     ========================= */
 
     .manga-stage {
       position: relative;
 
       display: flex;
+
       justify-content: center;
       align-items: center;
 
       gap: 2px;
 
       width: 100%;
+
       margin: 0 auto;
+
+      overflow: hidden;
     }
 
 
-    /* 各ページ */
+    /* 漫画1ページ */
 
     .manga-page {
       display: block;
@@ -89,20 +112,20 @@
       height: auto;
 
       max-width: calc(50% - 1px);
-      max-height: 82vh;
+      max-height: 78vh;
 
       object-fit: contain;
     }
 
 
-    /* 単ページ時 */
+    /* 3Pやスマホ縦の単ページ */
 
     .manga-page.single-page {
       max-width: 100%;
     }
 
 
-    /* 非表示 */
+    /* 非表示ページ */
 
     .hidden-page {
       display: none;
@@ -132,14 +155,14 @@
     }
 
 
-    /* 左クリック → 次 */
+    /* 左半分 → 次ページ */
 
     .next-zone {
       left: 0;
     }
 
 
-    /* 右クリック → 戻る */
+    /* 右半分 → 前ページ */
 
     .prev-zone {
       right: 0;
@@ -151,21 +174,29 @@
     ========================= */
 
     #page-count {
-      margin: 18px 0 0;
+      margin:
+        18px
+        0
+        0;
 
       color: #aaa;
 
       font-size: 12px;
+
       letter-spacing: 0.08em;
     }
 
 
     .reader-help {
-      margin: 8px 0 0;
+      margin:
+        8px
+        0
+        0;
 
       color: #888;
 
       font-size: 11px;
+
       letter-spacing: 0.04em;
     }
 
@@ -185,13 +216,15 @@
 
         padding:
           35px
-          12px
+          10px
           30px;
       }
 
 
       .reader-heading {
-        padding: 0 10px;
+        padding:
+          0
+          10px;
       }
 
 
@@ -207,6 +240,7 @@
 
       .manga-page {
         width: 100%;
+
         height: auto;
 
         max-width: 100%;
@@ -218,6 +252,7 @@
     }
 
   </style>
+
 </head>
 
 
@@ -225,7 +260,10 @@
 
   <main>
 
-    <!-- ロゴ -->
+
+    <!-- =====================
+         上部ロゴ
+    ====================== -->
 
     <img
       src="cheese-logo.png"
@@ -234,12 +272,18 @@
     >
 
 
-    <!-- タイトル -->
+    <!-- =====================
+         タイトル
+    ====================== -->
 
-    <h1>熊よ</h1>
+    <h1>
+      熊よ
+    </h1>
 
 
-    <!-- メニュー -->
+    <!-- =====================
+         メニュー
+    ====================== -->
 
     <nav class="menu">
 
@@ -296,25 +340,31 @@
       </div>
 
 
-      <!-- 漫画 -->
+      <!-- 漫画本体 -->
 
       <div class="manga-stage">
 
 
-        <!-- 左側
-             見開き時：奇数ページ -->
+        <!--
+          左ページ
+          見開き時は奇数ページ
+          5、7、9……
+        -->
 
         <img
           id="left-page"
           class="manga-page hidden-page"
-          src=""
           alt=""
         >
 
 
-        <!-- 右側
-             見開き時：偶数ページ
-             最初の3Pもここに表示 -->
+        <!--
+          右ページ
+          見開き時は偶数ページ
+          4、6、8……
+
+          最初だけ3Pを単独表示
+        -->
 
         <img
           id="right-page"
@@ -324,7 +374,7 @@
         >
 
 
-        <!-- 左半分クリック -->
+        <!-- 左半分クリック＝次 -->
 
         <button
           type="button"
@@ -333,7 +383,7 @@
         ></button>
 
 
-        <!-- 右半分クリック -->
+        <!-- 右半分クリック＝戻る -->
 
         <button
           type="button"
@@ -344,7 +394,7 @@
       </div>
 
 
-      <!-- ページ表示 -->
+      <!-- ページ番号 -->
 
       <p id="page-count">
         3 / 49
@@ -355,15 +405,17 @@
         左クリック：次へ　右側クリック：戻る
       </p>
 
+
     </section>
 
   </main>
 
 
+
   <script>
 
     /* =========================
-       基本設定
+       ページ設定
     ========================= */
 
     const FIRST_PAGE = 3;
@@ -371,17 +423,21 @@
 
 
     /*
-      currentPage は
-      「現在見ているページ」を記録。
+      現在位置。
 
-      見開き時：
-      4 / 5 の場合は4
-      6 / 7 の場合は6
-      を基本位置として扱う。
+      PC見開きなら
+      4・5の組 → 4
+      6・7の組 → 6
+      として扱う。
     */
 
     let currentPage = FIRST_PAGE;
 
+
+
+    /* =========================
+       HTML要素取得
+    ========================= */
 
     const leftPage =
       document.getElementById(
@@ -413,8 +469,9 @@
       );
 
 
+
     /* =========================
-       ファイル名生成
+       画像ファイル名を作る
     ========================= */
 
     function filename(pageNumber) {
@@ -431,8 +488,9 @@
     }
 
 
+
     /* =========================
-       スマホ縦判定
+       スマホ縦か判定
     ========================= */
 
     function isPhonePortrait() {
@@ -446,8 +504,9 @@
     }
 
 
+
     /* =========================
-       左ページを隠す
+       左ページを消す
     ========================= */
 
     function hideLeftPage() {
@@ -468,13 +527,12 @@
     }
 
 
+
     /* =========================
        単ページ表示
     ========================= */
 
-    function showSinglePage(
-      pageNumber
-    ) {
+    function showSinglePage(pageNumber) {
 
       hideLeftPage();
 
@@ -503,25 +561,25 @@
     }
 
 
+
     /* =========================
        見開き表示
     ========================= */
 
-    function showSpread(
-      pageNumber
-    ) {
+    function showSpread(pageNumber) {
+
 
       /*
         日本漫画なので
 
-        奇数  偶数
-        左    右
+        左  | 右
 
-        5 | 4
-        7 | 6
-        9 | 8
+        5   | 4
+        7   | 6
+        9   | 8
 
-        になる。
+        奇数＝左
+        偶数＝右
       */
 
 
@@ -547,7 +605,10 @@
         rightNumber + 1;
 
 
-      /* 左ページ */
+
+      /* ---------------------
+         左の奇数ページ
+      --------------------- */
 
       if (
         leftNumber <= LAST_PAGE
@@ -575,7 +636,10 @@
       }
 
 
-      /* 右ページ */
+
+      /* ---------------------
+         右の偶数ページ
+      --------------------- */
 
       rightPage
         .classList
@@ -590,7 +654,10 @@
         `熊よ ${rightNumber}ページ`;
 
 
-      /* ページ番号 */
+
+      /* ---------------------
+         ページ番号
+      --------------------- */
 
       if (
         leftNumber <= LAST_PAGE
@@ -607,7 +674,10 @@
       }
 
 
-      /* 次の画像を先読み */
+
+      /* ---------------------
+         周辺画像を先読み
+      --------------------- */
 
       preload(
         rightNumber + 2
@@ -628,17 +698,21 @@
     }
 
 
+
     /* =========================
-       表示切替
+       現在位置を表示
     ========================= */
 
     function render() {
 
+
       /*
-        3ページ目は必ず単ページ。
+        3ページ目は
+        どの端末でも単ページ。
+
 
         スマホ縦も
-        すべて単ページ。
+        全ページ単ページ。
       */
 
 
@@ -662,6 +736,7 @@
     }
 
 
+
     /* =========================
        次へ
     ========================= */
@@ -669,31 +744,32 @@
     function nextPage() {
 
 
-      if (
-        currentPage >= LAST_PAGE
-      ) {
-
-        return;
-
-      }
-
-
       /*
-        スマホ縦は
-        1ページずつ
+        スマホ縦
+        ↓
+        1ページずつ進む
       */
 
       if (
         isPhonePortrait()
       ) {
 
-        currentPage++;
 
-        render();
+        if (
+          currentPage < LAST_PAGE
+        ) {
+
+          currentPage++;
+
+          render();
+
+        }
+
 
         return;
 
       }
+
 
 
       /*
@@ -701,11 +777,11 @@
 
         3
         ↓
-        4・5
+        5 | 4
         ↓
-        6・7
+        7 | 6
         ↓
-        8・9
+        9 | 8
       */
 
 
@@ -715,26 +791,42 @@
 
         currentPage = 4;
 
-      } else {
+        render();
 
-        const rightNumber =
-          currentPage % 2 === 0
-            ? currentPage
-            : currentPage - 1;
-
-
-        currentPage =
-          Math.min(
-            rightNumber + 2,
-            LAST_PAGE
-          );
+        return;
 
       }
+
+
+      const rightNumber =
+        currentPage % 2 === 0
+          ? currentPage
+          : currentPage - 1;
+
+
+      /*
+        48・49を表示中なら
+        もう先へ行かない
+      */
+
+      if (
+        rightNumber + 1 >=
+        LAST_PAGE
+      ) {
+
+        return;
+
+      }
+
+
+      currentPage =
+        rightNumber + 2;
 
 
       render();
 
     }
+
 
 
     /* =========================
@@ -743,6 +835,39 @@
 
     function prevPage() {
 
+
+      /*
+        スマホ縦
+        ↓
+        1ページずつ戻る
+      */
+
+      if (
+        isPhonePortrait()
+      ) {
+
+
+        if (
+          currentPage > FIRST_PAGE
+        ) {
+
+          currentPage--;
+
+          render();
+
+        }
+
+
+        return;
+
+      }
+
+
+
+      /*
+        3Pなら
+        もう戻らない
+      */
 
       if (
         currentPage <= FIRST_PAGE
@@ -753,42 +878,19 @@
       }
 
 
-      /*
-        スマホ縦は
-        1ページずつ戻る
-      */
-
-      if (
-        isPhonePortrait()
-      ) {
-
-        currentPage--;
-
-        render();
-
-        return;
-
-      }
-
-
-      /*
-        PC / iPad / スマホ横
-
-        8・9
-        ↓
-        6・7
-        ↓
-        4・5
-        ↓
-        3
-      */
-
 
       const rightNumber =
         currentPage % 2 === 0
           ? currentPage
           : currentPage - 1;
 
+
+
+      /*
+        5 | 4
+        ↓
+        3
+      */
 
       if (
         rightNumber <= 4
@@ -797,7 +899,15 @@
         currentPage =
           FIRST_PAGE;
 
-      } else {
+      }
+
+
+      /*
+        それ以外は
+        2ページ戻る
+      */
+
+      else {
 
         currentPage =
           rightNumber - 2;
@@ -810,13 +920,13 @@
     }
 
 
+
     /* =========================
        画像先読み
     ========================= */
 
-    function preload(
-      pageNumber
-    ) {
+    function preload(pageNumber) {
+
 
       if (
         pageNumber < FIRST_PAGE ||
@@ -840,8 +950,9 @@
     }
 
 
+
     /* =========================
-       クリック
+       マウス / タップ
     ========================= */
 
     nextZone
@@ -858,6 +969,7 @@
       );
 
 
+
     /* =========================
        キーボード
     ========================= */
@@ -871,8 +983,8 @@
           /*
             日本漫画方向
 
-            ← 次へ
-            → 戻る
+            ← で次
+            → で戻る
           */
 
 
@@ -899,6 +1011,7 @@
       );
 
 
+
     /* =========================
        スマホ回転
     ========================= */
@@ -910,8 +1023,9 @@
       );
 
 
+
     /* =========================
-       最初の表示
+       最初に3Pを表示
     ========================= */
 
     render();
