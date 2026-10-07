@@ -1,175 +1,923 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>熊よ｜多治川晴人</title>
-  <link rel="stylesheet" href="style.css">
 
-.manga-viewer {
-  margin: 70px auto 0;
-  width: min(1000px, 92%);
-  padding: 55px 35px 45px;
-  background: #3f3f3f;
-  box-sizing: border-box;
-  text-align: center;
-  user-select: none;
-}
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>熊よ｜多治川晴人</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+  <style>
+
+    /* =========================
+       漫画ビューア全体
+    ========================= */
+
+    .manga-viewer {
+      margin: 70px auto 0;
+      width: min(1000px, 92%);
+      padding: 55px 35px 45px;
+
+      background: #3f3f3f;
+
+      box-sizing: border-box;
+      text-align: center;
+      user-select: none;
+    }
+
+
+    /* =========================
+       グレー箱上部
+    ========================= */
+
+    .reader-heading {
+      margin-bottom: 40px;
+      color: #bbb;
+      font-size: 12px;
+      line-height: 1.8;
+      text-align: left;
+    }
+
+    .reader-heading h2 {
+      margin: 0 0 55px;
+
+      color: #ddd;
+      font-size: 20px;
+      font-weight: normal;
+
+      text-align: center;
+    }
+
+    .reader-heading p {
+      margin: 0;
+    }
+
+
+    /* =========================
+       漫画表示部分
+    ========================= */
 
     .manga-stage {
       position: relative;
-      display: inline-block;
-      max-width: 100%;
-    }
 
-    #manga-page {
-      display: block;
-      max-width: 100%;
-      max-height: 82vh;
-      width: auto;
-      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      gap: 2px;
+
+      width: 100%;
       margin: 0 auto;
     }
 
-    .page-zone {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 50%;
-      border: 0;
-      background: transparent;
-      cursor: pointer;
+
+    /* 各ページ */
+
+    .manga-page {
+      display: block;
+
+      width: auto;
+      height: auto;
+
+      max-width: calc(50% - 1px);
+      max-height: 82vh;
+
+      object-fit: contain;
     }
 
-    /* 日本漫画式：左を押すと次へ */
+
+    /* 単ページ時 */
+
+    .manga-page.single-page {
+      max-width: 100%;
+    }
+
+
+    /* 非表示 */
+
+    .hidden-page {
+      display: none;
+    }
+
+
+    /* =========================
+       クリック領域
+    ========================= */
+
+    .page-zone {
+      position: absolute;
+
+      top: 0;
+      bottom: 0;
+
+      width: 50%;
+
+      padding: 0;
+      border: 0;
+
+      background: transparent;
+
+      cursor: pointer;
+
+      z-index: 10;
+    }
+
+
+    /* 左クリック → 次 */
+
     .next-zone {
       left: 0;
     }
 
-    /* 右を押すと前へ */
+
+    /* 右クリック → 戻る */
+
     .prev-zone {
       right: 0;
     }
 
+
+    /* =========================
+       ページ番号
+    ========================= */
+
     #page-count {
-      margin-top: 16px;
-      color: #888;
+      margin: 18px 0 0;
+
+      color: #aaa;
+
       font-size: 12px;
       letter-spacing: 0.08em;
     }
 
+
     .reader-help {
-      margin-top: 8px;
-      color: #666;
+      margin: 8px 0 0;
+
+      color: #888;
+
       font-size: 11px;
+      letter-spacing: 0.04em;
     }
+
+
+    /* =========================
+       スマホ縦だけ単ページ
+    ========================= */
+
+    @media
+      (max-width: 700px)
+      and (orientation: portrait) {
+
+      .manga-viewer {
+        width: 100%;
+
+        margin-top: 45px;
+
+        padding:
+          35px
+          12px
+          30px;
+      }
+
+
+      .reader-heading {
+        padding: 0 10px;
+      }
+
+
+      .reader-heading h2 {
+        margin-bottom: 35px;
+      }
+
+
+      .manga-stage {
+        display: block;
+      }
+
+
+      .manga-page {
+        width: 100%;
+        height: auto;
+
+        max-width: 100%;
+        max-height: none;
+
+        margin: 0 auto;
+      }
+
+    }
+
   </style>
 </head>
 
+
 <body>
+
   <main>
-    <img src="cheese-logo.png" alt="多治川晴人ロゴ" class="logo">
+
+    <!-- ロゴ -->
+
+    <img
+      src="cheese-logo.png"
+      alt="多治川晴人ロゴ"
+      class="logo"
+    >
+
+
+    <!-- タイトル -->
+
     <h1>熊よ</h1>
 
+
+    <!-- メニュー -->
+
     <nav class="menu">
-      <a href="index.html">HOME</a>
-      <a href="news.html">NEWS</a>
-      <a href="comic.html">COMIC</a>
-      <a href="illustration.html">ILLUSTRATION</a>
-      <a href="journal.html">JOURNAL</a>
-      <a href="profile.html">PROFILE</a>
+
+      <a href="index.html">
+        HOME
+      </a>
+
+      <a href="news.html">
+        NEWS
+      </a>
+
+      <a href="comic.html">
+        COMIC
+      </a>
+
+      <a href="illustration.html">
+        ILLUSTRATION
+      </a>
+
+      <a href="journal.html">
+        JOURNAL
+      </a>
+
+      <a href="profile.html">
+        PROFILE
+      </a>
+
     </nav>
+
+
+    <!-- =====================
+         漫画ビューア
+    ====================== -->
 
     <section class="manga-viewer">
 
+
+      <!-- 説明 -->
+
+      <div class="reader-heading">
+
+        <h2>
+          熊よ
+        </h2>
+
+        <p>
+          ２０２３年冬制作
+        </p>
+
+        <p>
+          左をクリックして読んでください
+        </p>
+
+      </div>
+
+
+      <!-- 漫画 -->
+
       <div class="manga-stage">
+
+
+        <!-- 左側
+             見開き時：奇数ページ -->
+
         <img
-          id="manga-page"
+          id="left-page"
+          class="manga-page hidden-page"
+          src=""
+          alt=""
+        >
+
+
+        <!-- 右側
+             見開き時：偶数ページ
+             最初の3Pもここに表示 -->
+
+        <img
+          id="right-page"
+          class="manga-page single-page"
           src="熊よ同人用B54_003.jpg"
           alt="熊よ 3ページ"
         >
 
-        <button class="page-zone next-zone" aria-label="次のページ"></button>
-        <button class="page-zone prev-zone" aria-label="前のページ"></button>
+
+        <!-- 左半分クリック -->
+
+        <button
+          type="button"
+          class="page-zone next-zone"
+          aria-label="次のページ"
+        ></button>
+
+
+        <!-- 右半分クリック -->
+
+        <button
+          type="button"
+          class="page-zone prev-zone"
+          aria-label="前のページ"
+        ></button>
+
       </div>
 
-      <p id="page-count">3 / 49</p>
-      <p class="reader-help">左クリック：次へ　右側クリック：戻る</p>
+
+      <!-- ページ表示 -->
+
+      <p id="page-count">
+        3 / 49
+      </p>
+
+
+      <p class="reader-help">
+        左クリック：次へ　右側クリック：戻る
+      </p>
 
     </section>
+
   </main>
 
+
   <script>
-    const firstPage = 3;
-    const lastPage = 49;
 
-    const pages = Array.from(
-      { length: lastPage - firstPage + 1 },
-      (_, i) => {
-        const pageNumber = firstPage + i;
-        const fileNumber = String(pageNumber).padStart(3, "0");
+    /* =========================
+       基本設定
+    ========================= */
 
-        return {
-          pageNumber: pageNumber,
-          src: `熊よ同人用B54_${fileNumber}.jpg`
-        };
-      }
-    );
+    const FIRST_PAGE = 3;
+    const LAST_PAGE = 49;
 
-    let current = 0;
 
-    const image = document.getElementById("manga-page");
-    const count = document.getElementById("page-count");
-    const nextZone = document.querySelector(".next-zone");
-    const prevZone = document.querySelector(".prev-zone");
+    /*
+      currentPage は
+      「現在見ているページ」を記録。
 
-    function showPage() {
-      const page = pages[current];
+      見開き時：
+      4 / 5 の場合は4
+      6 / 7 の場合は6
+      を基本位置として扱う。
+    */
 
-      image.src = page.src;
-      image.alt = `熊よ ${page.pageNumber}ページ`;
-      count.textContent = `${page.pageNumber} / ${lastPage}`;
+    let currentPage = FIRST_PAGE;
 
-      preloadNearby();
+
+    const leftPage =
+      document.getElementById(
+        "left-page"
+      );
+
+
+    const rightPage =
+      document.getElementById(
+        "right-page"
+      );
+
+
+    const pageCount =
+      document.getElementById(
+        "page-count"
+      );
+
+
+    const nextZone =
+      document.querySelector(
+        ".next-zone"
+      );
+
+
+    const prevZone =
+      document.querySelector(
+        ".prev-zone"
+      );
+
+
+    /* =========================
+       ファイル名生成
+    ========================= */
+
+    function filename(pageNumber) {
+
+      const number =
+        String(pageNumber)
+          .padStart(3, "0");
+
+
+      return (
+        `熊よ同人用B54_${number}.jpg`
+      );
+
     }
+
+
+    /* =========================
+       スマホ縦判定
+    ========================= */
+
+    function isPhonePortrait() {
+
+      return window
+        .matchMedia(
+          "(max-width: 700px) and (orientation: portrait)"
+        )
+        .matches;
+
+    }
+
+
+    /* =========================
+       左ページを隠す
+    ========================= */
+
+    function hideLeftPage() {
+
+      leftPage
+        .classList
+        .add("hidden-page");
+
+
+      leftPage
+        .classList
+        .remove("single-page");
+
+
+      leftPage
+        .removeAttribute("src");
+
+    }
+
+
+    /* =========================
+       単ページ表示
+    ========================= */
+
+    function showSinglePage(
+      pageNumber
+    ) {
+
+      hideLeftPage();
+
+
+      rightPage
+        .classList
+        .add("single-page");
+
+
+      rightPage.src =
+        filename(pageNumber);
+
+
+      rightPage.alt =
+        `熊よ ${pageNumber}ページ`;
+
+
+      pageCount.textContent =
+        `${pageNumber} / ${LAST_PAGE}`;
+
+
+      preload(pageNumber + 1);
+
+      preload(pageNumber - 1);
+
+    }
+
+
+    /* =========================
+       見開き表示
+    ========================= */
+
+    function showSpread(
+      pageNumber
+    ) {
+
+      /*
+        日本漫画なので
+
+        奇数  偶数
+        左    右
+
+        5 | 4
+        7 | 6
+        9 | 8
+
+        になる。
+      */
+
+
+      let rightNumber;
+
+
+      if (
+        pageNumber % 2 === 0
+      ) {
+
+        rightNumber =
+          pageNumber;
+
+      } else {
+
+        rightNumber =
+          pageNumber - 1;
+
+      }
+
+
+      const leftNumber =
+        rightNumber + 1;
+
+
+      /* 左ページ */
+
+      if (
+        leftNumber <= LAST_PAGE
+      ) {
+
+        leftPage
+          .classList
+          .remove(
+            "hidden-page",
+            "single-page"
+          );
+
+
+        leftPage.src =
+          filename(leftNumber);
+
+
+        leftPage.alt =
+          `熊よ ${leftNumber}ページ`;
+
+      } else {
+
+        hideLeftPage();
+
+      }
+
+
+      /* 右ページ */
+
+      rightPage
+        .classList
+        .remove("single-page");
+
+
+      rightPage.src =
+        filename(rightNumber);
+
+
+      rightPage.alt =
+        `熊よ ${rightNumber}ページ`;
+
+
+      /* ページ番号 */
+
+      if (
+        leftNumber <= LAST_PAGE
+      ) {
+
+        pageCount.textContent =
+          `${rightNumber} - ${leftNumber} / ${LAST_PAGE}`;
+
+      } else {
+
+        pageCount.textContent =
+          `${rightNumber} / ${LAST_PAGE}`;
+
+      }
+
+
+      /* 次の画像を先読み */
+
+      preload(
+        rightNumber + 2
+      );
+
+      preload(
+        rightNumber + 3
+      );
+
+      preload(
+        rightNumber - 1
+      );
+
+      preload(
+        rightNumber - 2
+      );
+
+    }
+
+
+    /* =========================
+       表示切替
+    ========================= */
+
+    function render() {
+
+      /*
+        3ページ目は必ず単ページ。
+
+        スマホ縦も
+        すべて単ページ。
+      */
+
+
+      if (
+        currentPage === FIRST_PAGE ||
+        isPhonePortrait()
+      ) {
+
+        showSinglePage(
+          currentPage
+        );
+
+      } else {
+
+        showSpread(
+          currentPage
+        );
+
+      }
+
+    }
+
+
+    /* =========================
+       次へ
+    ========================= */
 
     function nextPage() {
-      if (current < pages.length - 1) {
-        current++;
-        showPage();
+
+
+      if (
+        currentPage >= LAST_PAGE
+      ) {
+
+        return;
+
       }
+
+
+      /*
+        スマホ縦は
+        1ページずつ
+      */
+
+      if (
+        isPhonePortrait()
+      ) {
+
+        currentPage++;
+
+        render();
+
+        return;
+
+      }
+
+
+      /*
+        PC / iPad / スマホ横
+
+        3
+        ↓
+        4・5
+        ↓
+        6・7
+        ↓
+        8・9
+      */
+
+
+      if (
+        currentPage === FIRST_PAGE
+      ) {
+
+        currentPage = 4;
+
+      } else {
+
+        const rightNumber =
+          currentPage % 2 === 0
+            ? currentPage
+            : currentPage - 1;
+
+
+        currentPage =
+          Math.min(
+            rightNumber + 2,
+            LAST_PAGE
+          );
+
+      }
+
+
+      render();
+
     }
+
+
+    /* =========================
+       戻る
+    ========================= */
 
     function prevPage() {
-      if (current > 0) {
-        current--;
-        showPage();
+
+
+      if (
+        currentPage <= FIRST_PAGE
+      ) {
+
+        return;
+
       }
+
+
+      /*
+        スマホ縦は
+        1ページずつ戻る
+      */
+
+      if (
+        isPhonePortrait()
+      ) {
+
+        currentPage--;
+
+        render();
+
+        return;
+
+      }
+
+
+      /*
+        PC / iPad / スマホ横
+
+        8・9
+        ↓
+        6・7
+        ↓
+        4・5
+        ↓
+        3
+      */
+
+
+      const rightNumber =
+        currentPage % 2 === 0
+          ? currentPage
+          : currentPage - 1;
+
+
+      if (
+        rightNumber <= 4
+      ) {
+
+        currentPage =
+          FIRST_PAGE;
+
+      } else {
+
+        currentPage =
+          rightNumber - 2;
+
+      }
+
+
+      render();
+
     }
 
-    function preloadNearby() {
-      [current - 1, current + 1].forEach(i => {
-        if (pages[i]) {
-          const img = new Image();
-          img.src = pages[i].src;
+
+    /* =========================
+       画像先読み
+    ========================= */
+
+    function preload(
+      pageNumber
+    ) {
+
+      if (
+        pageNumber < FIRST_PAGE ||
+        pageNumber > LAST_PAGE
+      ) {
+
+        return;
+
+      }
+
+
+      const image =
+        new Image();
+
+
+      image.src =
+        filename(
+          pageNumber
+        );
+
+    }
+
+
+    /* =========================
+       クリック
+    ========================= */
+
+    nextZone
+      .addEventListener(
+        "click",
+        nextPage
+      );
+
+
+    prevZone
+      .addEventListener(
+        "click",
+        prevPage
+      );
+
+
+    /* =========================
+       キーボード
+    ========================= */
+
+    document
+      .addEventListener(
+        "keydown",
+        event => {
+
+
+          /*
+            日本漫画方向
+
+            ← 次へ
+            → 戻る
+          */
+
+
+          if (
+            event.key ===
+            "ArrowLeft"
+          ) {
+
+            nextPage();
+
+          }
+
+
+          if (
+            event.key ===
+            "ArrowRight"
+          ) {
+
+            prevPage();
+
+          }
+
         }
-      });
-    }
+      );
 
-    nextZone.addEventListener("click", nextPage);
-    prevZone.addEventListener("click", prevPage);
 
-    document.addEventListener("keydown", event => {
-      if (event.key === "ArrowLeft") {
-        nextPage();
-      }
+    /* =========================
+       スマホ回転
+    ========================= */
 
-      if (event.key === "ArrowRight") {
-        prevPage();
-      }
-    });
+    window
+      .addEventListener(
+        "resize",
+        render
+      );
 
-    showPage();
+
+    /* =========================
+       最初の表示
+    ========================= */
+
+    render();
+
   </script>
+
 </body>
+
 </html>
