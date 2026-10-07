@@ -228,3 +228,10 @@ margin-bottom: 10px;
   height: auto;
   margin: 45px auto 35px;
 }
+.artist-name-logo {
+  display: block;
+  width: 340px !important;
+  max-width: 70vw !important;
+  height: auto !important;
+  margin: 45px auto 35px;
+}
