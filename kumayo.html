@@ -1,1 +1,47 @@
+<section class="manga-viewer">
 
+  <button class="page-area next-page" aria-label="次のページ"></button>
+
+  <img id="manga-page"
+       src="kumayo-01.jpg"
+       alt="熊よ">
+
+  <button class="page-area prev-page" aria-label="前のページ"></button>
+
+  <p id="page-count">1 / 20</p>
+
+</section>
+
+<script>
+const pages = [
+  "kumayo-01.jpg",
+  "kumayo-02.jpg",
+  "kumayo-03.jpg",
+  "kumayo-04.jpg"
+  // 続きをここに追加
+];
+
+let currentPage = 0;
+
+const image = document.getElementById("manga-page");
+const count = document.getElementById("page-count");
+
+function showPage() {
+  image.src = pages[currentPage];
+  count.textContent = `${currentPage + 1} / ${pages.length}`;
+}
+
+document.querySelector(".next-page").addEventListener("click", () => {
+  if (currentPage < pages.length - 1) {
+    currentPage++;
+    showPage();
+  }
+});
+
+document.querySelector(".prev-page").addEventListener("click", () => {
+  if (currentPage > 0) {
+    currentPage--;
+    showPage();
+  }
+});
+</script>
