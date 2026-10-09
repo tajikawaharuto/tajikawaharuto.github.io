@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CONTACT｜多治川晴人</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+
+    .contact-box {
+      width: min(760px, 92%);
+      margin: 70px auto 0;
+      padding: 55px 45px 60px;
+      background: #3f3f3f;
+      box-sizing: border-box;
+    }
+
+    .contact-box h2 {
+      margin: 0 0 18px;
+      color: #eee;
+      font-size: 28px;
+      font-weight: normal;
+      letter-spacing: 0.08em;
+      text-align: center;
+    }
+
+    .contact-line {
+      border: 0;
+      border-top: 6px solid #383838;
+      margin: 0 0 45px;
+    }
+
+    .contact-intro {
+      margin: 0 0 40px;
+      color: #bbb;
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .contact-form {
+      text-align: left;
+    }
+
+    .form-group {
+      margin-bottom: 26px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 9px;
+      color: #ccc;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      color: #ddd;
+      background: #2e2e2e;
+      border: 1px solid #666;
+      box-sizing: border-box;
+      font-family: inherit;
+      font-size: 13px;
+    }
+
+    .form-group textarea {
+      min-height: 220px;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: 1px solid #aaa;
+    }
+
+    .required {
+      margin-left: 6px;
+      color: #aaa;
+      font-size: 10px;
+    }
+
+    .submit-button {
+      display: block;
+      margin: 40px auto 0;
+      padding: 11px 32px;
+      color: #ddd;
+      background: transparent;
+      border: 1px solid #aaa;
+      font-family: inherit;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+    }
+
+    .submit-button:hover {
+      color: #fff;
+      border-color: #fff;
+    }
+
+    .contact-note {
+      margin-top: 35px;
+      color: #888;
+      font-size: 10px;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 700px) {
+
+      .contact-box {
+        width: 100%;
+        margin-top: 45px;
+        padding: 35px 20px 45px;
+      }
+
+      .contact-box h2 {
+        font-size: 24px;
+      }
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <main>
+
+    <img
+      src="cheese-logo.png"
+      alt="多治川晴人ロゴ"
+      class="logo"
+    >
+
+    <h1>
+      CONTACT
+    </h1>
+
+    <nav class="menu">
+
+      <a href="index.html">HOME</a>
+
+      <a href="news.html">NEWS</a>
+
+      <a href="illustration.html">ILLUSTRATION</a>
+
+      <a href="profile.html">PROFILE</a>
+
+      <a href="contact.html">CONTACT</a>
+
+    </nav>
+
+    <section class="contact-box">
+
+      <h2>
+        お問い合わせ
+      </h2>
+
+      <hr class="contact-line">
+
+      <p class="contact-intro">
+        お仕事のご依頼・お問い合わせはこちらからお願いいたします。<br>
+        内容を確認のうえ、必要に応じて返信いたします。
+      </p>
+
+      <form
+        class="contact-form"
+        action="https://formspree.io/f/xdeaznga"
+        method="POST"
+      >
+
+        <div class="form-group">
+
+          <label for="name">
+            お名前
+            <span class="required">必須</span>
+          </label>
+
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+          >
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="email">
+            メールアドレス
+            <span class="required">必須</span>
+          </label>
+
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+          >
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="type">
+            お問い合わせ種別
+          </label>
+
+          <select
+            id="type"
+            name="type"
+          >
+
+            <option value="漫画・イラストのお仕事">
+              漫画・イラストのお仕事
+            </option>
+
+            <option value="その他">
+              その他
+            </option>
+
+          </select>
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="subject">
+            件名
+            <span class="required">必須</span>
+          </label>
+
+          <input
+            type="text"
+            id="subject"
+            name="subject"
+            required
+          >
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="message">
+            お問い合わせ内容
+            <span class="required">必須</span>
+          </label>
+
+          <textarea
+            id="message"
+            name="message"
+            required
+          ></textarea>
+
+        </div>
+
+        <button
+          type="submit"
+          class="submit-button"
+        >
+          SEND
+        </button>
+
+      </form>
+
+      <p class="contact-note">
+        営業・勧誘等、内容によっては返信いたしかねる場合があります。
+      </p>
+
+    </section>
+
+  </main>
+
+</body>
+
+</html>
