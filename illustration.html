@@ -11,15 +11,25 @@
 
   <style>
 
+    /* =========================
+       イラストページ全体
+    ========================= */
+
     .illustration-box {
       width: min(900px, 92%);
       margin: 70px auto 0;
+
       padding: 55px 35px 60px;
 
       background: #3f3f3f;
 
       box-sizing: border-box;
     }
+
+
+    /* =========================
+       「落書き置き場」
+    ========================= */
 
     .illustration-box h2 {
       margin: 0 0 18px;
@@ -28,50 +38,21 @@
 
       font-size: 32px;
       font-weight: normal;
+
       letter-spacing: 0.08em;
+
+      text-align: center;
     }
+
 
     .illustration-line {
       border: 0;
+
       border-top: 6px solid #383838;
 
       margin: 0 0 50px;
     }
 
-    .illustration-item {
-      text-align: center;
-    }
-
-    .illustration-item a {
-      display: inline-block;
-    }
-
-    .illustration-item img {
-      display: block;
-
-      width: auto;
-      height: auto;
-
-      max-width: 100%;
-      max-height: 80vh;
-
-      margin: 0 auto;
-
-      transition: opacity 0.2s;
-    }
-
-    .illustration-item img:hover {
-      opacity: 0.85;
-    }
-
-    .illustration-caption {
-      margin-top: 18px;
-
-      color: #bbb;
-
-      font-size: 12px;
-      letter-spacing: 0.06em;
-    }
 
     .illustration-note {
       margin: 0 0 35px;
@@ -79,8 +60,103 @@
       color: #aaa;
 
       font-size: 11px;
+
       text-align: left;
     }
+
+
+    /* =========================
+       作品1点
+    ========================= */
+
+    .illustration-item {
+      width: min(720px, 100%);
+
+      margin: 0 auto;
+
+      text-align: left;
+    }
+
+
+    /* 日付 */
+
+    .illustration-date {
+      margin: 0 0 18px;
+
+      color: #bbb;
+
+      font-size: 12px;
+
+      letter-spacing: 0.04em;
+
+      text-align: left;
+    }
+
+
+    /* 画像＋タイトル */
+
+    .illustration-row {
+      display: flex;
+
+      flex-direction: row;
+
+      align-items: flex-start;
+
+      gap: 20px;
+
+      width: 100%;
+    }
+
+
+    /* 画像側 */
+
+    .illustration-row a {
+      display: block;
+
+      width: 360px;
+      max-width: 55%;
+
+      flex-shrink: 0;
+    }
+
+
+    .illustration-row img {
+      display: block;
+
+      width: 100%;
+      height: auto;
+
+      margin: 0;
+
+      transition: opacity 0.2s;
+    }
+
+
+    .illustration-row img:hover {
+      opacity: 0.85;
+    }
+
+
+    /* タイトル側 */
+
+    .illustration-title {
+      margin: 0;
+
+      color: #bbb;
+
+      font-size: 12px;
+
+      line-height: 1.8;
+
+      letter-spacing: 0.04em;
+
+      text-align: left;
+    }
+
+
+    /* =========================
+       スマホ
+    ========================= */
 
     @media (max-width: 700px) {
 
@@ -95,86 +171,31 @@
           45px;
       }
 
+
       .illustration-box h2 {
         font-size: 25px;
+      }
+
+
+      .illustration-row {
+        flex-direction: column;
+      }
+
+
+      .illustration-row a {
+        width: 100%;
+        max-width: 100%;
+      }
+
+
+      .illustration-title {
+        margin-top: 12px;
       }
 
     }
 
   </style>
-/* 旧サイト風：日付上・画像左・タイトル右 */
 
-.illustration-item {
-  width: min(720px, 100%);
-  margin: 0 auto;
-  text-align: left !important;
-}
-
-.illustration-date {
-  margin: 0 0 18px !important;
-
-  color: #bbb;
-  font-size: 12px;
-
-  text-align: left !important;
-}
-
-.illustration-row {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: flex-start !important;
-
-  gap: 20px;
-
-  width: 100%;
-}
-
-.illustration-row a {
-  display: block;
-
-  width: 360px;
-  max-width: 55%;
-
-  flex-shrink: 0;
-}
-
-.illustration-row img {
-  display: block;
-
-  width: 100%;
-  height: auto;
-
-  margin: 0 !important;
-}
-
-.illustration-title {
-  margin: 0 !important;
-
-  color: #bbb;
-  font-size: 12px;
-  line-height: 1.8;
-
-  text-align: left !important;
-}
-
-
-/* スマホだけ縦並び */
-
-@media (max-width: 700px) {
-
-  .illustration-row {
-    flex-direction: column !important;
-  }
-
-  .illustration-row a {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .illustration-title {
-    margin-top: 12px !important;
-  }
-}
 </head>
 
 
@@ -182,16 +203,23 @@
 
   <main>
 
+    <!-- ロゴ -->
+
     <img
       src="cheese-logo.png"
       alt="多治川晴人ロゴ"
       class="logo"
     >
 
+
+    <!-- ページタイトル -->
+
     <h1>
       ILLUSTRATION
     </h1>
 
+
+    <!-- メニュー -->
 
     <nav class="menu">
 
@@ -214,44 +242,63 @@
     </nav>
 
 
+    <!-- イラスト展示エリア -->
+
     <section class="illustration-box">
+
 
       <h2>
         落書き置き場
       </h2>
 
+
       <hr class="illustration-line">
+
 
       <p class="illustration-note">
         クリックで拡大
       </p>
 
-<div class="illustration-item">
 
-  <p class="illustration-date">
-    24/06/04
-  </p>
+      <!-- =====================
+           イラスト 01
+      ====================== -->
 
-  <div class="illustration-row">
+      <div class="illustration-item">
 
-    <a
-      href="illustration_001.png"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <img
-        src="illustration_001.png"
-        alt="ファイアーエムブレム風花雪月 エーデルガルト"
-      >
-    </a>
 
-    <p class="illustration-title">
-      ファイアーエムブレム風花雪月　エーデルガルト
-    </p>
+        <p class="illustration-date">
+          24/06/04
+        </p>
 
-  </div>
 
-</div>
+        <div class="illustration-row">
+
+
+          <a
+            href="illustration_001.png"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
+            <img
+              src="illustration_001.png"
+              alt="ファイアーエムブレム風花雪月 エーデルガルト"
+            >
+
+          </a>
+
+
+          <p class="illustration-title">
+            ファイアーエムブレム風花雪月<br>
+            エーデルガルト
+          </p>
+
+
+        </div>
+
+      </div>
+
 
     </section>
 
