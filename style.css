@@ -251,3 +251,28 @@ h1 {
   color: #fff;
   border-color: #fff;
 }
+/* =========================
+   スマホ用調整
+========================= */
+
+@media (max-width: 700px) {
+
+  /* 上部メニューを1列にする */
+  .menu {
+    flex-wrap: nowrap;
+    gap: 11px;
+  }
+
+  .menu a {
+    font-size: 10px;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  /* ムーンライトグラスランドを1行にする */
+  .moonlight-title {
+    font-size: 25px;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+}
