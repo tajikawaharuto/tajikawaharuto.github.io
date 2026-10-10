@@ -165,7 +165,7 @@ h1 {
 .work-link:nth-child(2) {
   margin-bottom: 30px;
 }
-margin-bottom: 10px;
+
 .news-box {
   margin: 70px auto 0;
   max-width: 820px;
@@ -234,4 +234,20 @@ margin-bottom: 10px;
   max-width: 70vw !important;
   height: auto !important;
   margin: 45px auto 35px;
+}
+.x-share {
+  display: block;
+  width: fit-content;
+  margin: 45px auto 60px;
+  padding: 10px 24px;
+  border: 1px solid #888;
+  color: #aaa;
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+.x-share:hover {
+  color: #fff;
+  border-color: #fff;
 }
