@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>WORKS｜多治川晴人</title>
+
+  <meta
+    name="description"
+    content="漫画家・多治川晴人の漫画作品一覧。"
+  >
+
+  <link
+    rel="canonical"
+    href="https://tajikawaharuto.github.io/works.html"
+  >
+
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <meta name="theme-color" content="#000000">
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+
+    .works-box {
+      width: min(950px, 92%);
+      margin: 70px auto 0;
+      padding: 55px 40px 70px;
+
+      background: #3f3f3f;
+
+      box-sizing: border-box;
+    }
+
+
+    .works-box h2 {
+      margin: 0 0 18px;
+
+      color: #eee;
+
+      font-size: 30px;
+      font-weight: normal;
+
+      letter-spacing: 0.08em;
+    }
+
+
+    .works-line {
+      border: 0;
+      border-top: 6px solid #383838;
+
+      margin: 0 0 50px;
+    }
+
+
+    .works-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 55px 35px;
+    }
+
+
+    .work-item {
+      color: #bbb;
+      text-decoration: none;
+
+      text-align: left;
+    }
+
+
+    .work-item img {
+      display: block;
+
+      width: 100%;
+      height: auto;
+
+      margin: 0 0 18px;
+
+      transition: opacity 0.2s;
+    }
+
+
+    .work-item:hover img {
+      opacity: 0.75;
+    }
+
+
+    .work-item:hover {
+      color: #fff;
+    }
+
+
+    .work-title {
+      margin: 0 0 8px;
+
+      font-size: 17px;
+
+      letter-spacing: 0.05em;
+    }
+
+
+    .work-info {
+      margin: 0;
+
+      color: #999;
+
+      font-size: 11px;
+      line-height: 1.8;
+
+      letter-spacing: 0.03em;
+    }
+
+
+    @media (max-width: 700px) {
+
+      .works-box {
+        width: 100%;
+
+        margin-top: 45px;
+
+        padding:
+          35px
+          18px
+          50px;
+      }
+
+
+      .works-box h2 {
+        font-size: 25px;
+      }
+
+
+      .works-grid {
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+  <main>
+
+    <img
+      src="cheese-logo.png"
+      alt="多治川晴人ロゴ"
+      class="logo"
+    >
+
+
+    <h1>
+      WORKS
+    </h1>
+
+
+    <nav class="menu">
+
+      <a href="index.html">HOME</a>
+
+      <a href="works.html">WORKS</a>
+
+      <a href="news.html">NEWS</a>
+
+      <a href="illustration.html">ILLUSTRATION</a>
+
+      <a href="profile.html">PROFILE</a>
+
+      <a href="contact.html">CONTACT</a>
+
+    </nav>
+
+
+    <section class="works-box">
+
+      <h2>
+        COMIC
+      </h2>
+
+      <hr class="works-line">
+
+
+      <div class="works-grid">
+
+
+        <!-- 熊よ -->
+
+        <a
+          class="work-item"
+          href="kumayo.html"
+        >
+
+          <img
+            src="kumayo.png"
+            alt="熊よ"
+            width="1920"
+            height="1080"
+            loading="lazy"
+          >
+
+          <p class="work-title">
+            熊よ
+          </p>
+
+          <p class="work-info">
+            2023
+          </p>
+
+        </a>
+
+
+        <!-- ムーンライトグラスランド -->
+
+        <a
+          class="work-item"
+          href="moonlight.html"
+        >
+
+          <img
+            src="muunraitogurasuranndo.png"
+            alt="ムーンライトグラスランド"
+            width="1920"
+            height="1080"
+            loading="lazy"
+          >
+
+          <p class="work-title">
+            ムーンライトグラスランド
+          </p>
+
+          <p class="work-info">
+            2024<br>
+            新世界漫画賞 第93回 最終候補一歩手前
+          </p>
+
+        </a>
+
+
+        <!-- 猫の殺人 -->
+
+        <a
+          class="work-item"
+          href="https://tonarinoyj.jp/episode/2550912964673637553"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <img
+            src="nekonosatujinn.png"
+            alt="猫の殺人"
+            width="1080"
+            height="1044"
+            loading="lazy"
+          >
+
+          <p class="work-title">
+            猫の殺人
+          </p>
+
+          <p class="work-info">
+            2024<br>
+            集英社 青年漫画大賞 復讐部門 準大賞
+          </p>
+
+        </a>
+
+
+      </div>
+
+    </section>
+
+  </main>
+
+</body>
+
+</html>
