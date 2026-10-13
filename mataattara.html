@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>また会ったら｜多治川晴人</title>
+
+  <meta
+    name="description"
+    content="多治川晴人の漫画作品『また会ったら』。2026年秋制作、百合合同誌に寄稿した露悪百合短編。"
+  >
+
+
+  <!-- OGP -->
+
+  <meta
+    property="og:type"
+    content="article"
+  >
+
+  <meta
+    property="og:title"
+    content="また会ったら｜多治川晴人"
+  >
+
+  <meta
+    property="og:description"
+    content="2026年秋制作。百合合同誌に寄稿した露悪百合短編。"
+  >
+
+  <meta
+    property="og:url"
+    content="https://tajikawaharuto.github.io/mataattara.html"
+  >
+
+  <meta
+    property="og:image"
+    content="https://tajikawaharuto.github.io/mataattarabtan.png"
+  >
+
+  <meta
+    property="og:site_name"
+    content="多治川晴人"
+  >
+
+
+  <!-- X -->
+
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
+
+  <meta
+    name="twitter:title"
+    content="また会ったら｜多治川晴人"
+  >
+
+  <meta
+    name="twitter:description"
+    content="2026年秋制作。百合合同誌に寄稿した露悪百合短編。"
+  >
+
+  <meta
+    name="twitter:image"
+    content="https://tajikawaharuto.github.io/mataattarabtan.png"
+  >
+
+
+  <!-- 正式URL -->
+
+  <link
+    rel="canonical"
+    href="https://tajikawaharuto.github.io/mataattara.html"
+  >
+
+
+  <!-- アイコン -->
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="favicon.png"
+  >
+
+  <link
+    rel="apple-touch-icon"
+    href="apple-touch-icon.png"
+  >
+
+  <meta
+    name="theme-color"
+    content="#000000"
+  >
+
+
+  <!-- 共通デザイン -->
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+
+  <!-- また会ったら専用デザイン -->
+
+  <style>
+
+    .manga-viewer {
+      width: min(1000px, 92%);
+
+      margin:
+        70px
+        auto
+        0;
+
+      padding:
+        55px
+        35px
+        45px;
+
+      background: #3f3f3f;
+
+      box-sizing: border-box;
+
+      text-align: center;
+
+      user-select: none;
+    }
+
+
+    .reader-heading {
+      margin-bottom: 40px;
+
+      color: #bbb;
+
+      font-size: 12px;
+      line-height: 1.9;
+
+      text-align: left;
+    }
+
+
+    .reader-heading h2 {
+      margin:
+        0
+        0
+        45px;
+
+      color: #ddd;
+
+      font-size: 20px;
+      font-weight: normal;
+
+      text-align: center;
+    }
+
+
+    .reader-heading p {
+      margin:
+        0
+        0
+        12px;
+    }
+
+
+    .manga-stage {
+      position: relative;
+
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+
+      gap: 2px;
+
+      width: 100%;
+
+      margin:
+        0
+        auto;
+
+      overflow: hidden;
+    }
+
+
+    .manga-page {
+      display: block;
+
+      width: auto;
+      height: auto;
+
+      max-width: calc(50% - 1px);
+      max-height: 78vh;
+
+      object-fit: contain;
+    }
+
+
+    .manga-page.single-page {
+      max-width: 55%;
+    }
+
+
+    .hidden-page {
+      display: none;
+    }
+
+
+    .page-zone {
+      position: absolute;
+
+      top: 0;
+      bottom: 0;
+
+      width: 50%;
+
+      padding: 0;
+      border: 0;
+
+      background: transparent;
+
+      cursor: pointer;
+
+      z-index: 10;
+    }
+
+
+    /* 左側クリック → 次へ */
+
+    .next-zone {
+      left: 0;
+    }
+
+
+    /* 右側クリック → 戻る */
+
+    .prev-zone {
+      right: 0;
+    }
+
+
+    #page-count {
+      margin:
+        18px
+        0
+        0;
+
+      color: #aaa;
+
+      font-size: 12px;
+
+      letter-spacing: 0.08em;
+    }
+
+
+    .reader-help {
+      margin:
+        8px
+        0
+        0;
+
+      color: #888;
+
+      font-size: 11px;
+
+      letter-spacing: 0.04em;
+    }
+
+
+    .x-share {
+      display: inline-block;
+
+      margin-top: 28px;
+
+      padding:
+        10px
+        24px;
+
+      border: 1px solid #888;
+
+      color: #bbb;
+
+      background: transparent;
+
+      font-size: 12px;
+
+      letter-spacing: 0.12em;
+
+      text-decoration: none;
+
+      transition: 0.2s;
+    }
+
+
+    .x-share:hover {
+      color: #fff;
+
+      border-color: #fff;
+    }
+
+
+    /* スマホ縦 */
+
+    @media
+      (max-width: 700px)
+      and (orientation: portrait) {
+
+      .manga-viewer {
+        width: 100%;
+
+        margin-top: 45px;
+
+        padding:
+          35px
+          10px
+          30px;
+      }
+
+
+      .reader-heading {
+        padding:
+          0
+          10px;
+      }
+
+
+      .reader-heading h2 {
+        margin-bottom: 35px;
+      }
+
+
+      .manga-stage {
+        display: block;
+      }
+
+
+      .manga-page,
+      .manga-page.single-page {
+        width: 100%;
+
+        height: auto;
+
+        max-width: 100%;
+        max-height: none;
+
+        margin:
+          0
+          auto;
+      }
+
+    }
+
+  </style>
+
+
+  <!-- ロボ向け作品名札 -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "また会ったら",
+    "url": "https://tajikawaharuto.github.io/mataattara.html",
+    "image": "https://tajikawaharuto.github.io/mataattarabtan.png",
+    "description": "2026年秋制作。百合合同誌に寄稿した露悪百合短編。",
+    "inLanguage": "ja",
+    "dateCreated": "2026",
+    "creator": {
+      "@type": "Person",
+      "@id": "https://tajikawaharuto.github.io/#person",
+      "name": "多治川晴人"
+    }
+  }
+  </script>
+
+</head>
+
+
+<body>
+
+  <main>
+
+
+    <!-- ロゴ -->
+
+    <img
+      src="cheese-logo.png"
+      alt="多治川晴人ロゴ"
+      class="logo"
+    >
+
+
+    <!-- タイトル -->
+
+    <h1>
+      また会ったら
+    </h1>
+
+
+    <!-- メニュー -->
+
+    <nav class="menu">
+
+      <a href="index.html">
+        HOME
+      </a>
+
+      <a href="/works.html">
+        WORKS
+      </a>
+
+      <a href="news.html">
+        NEWS
+      </a>
+
+      <a href="illustration.html">
+        ILLUSTRATION
+      </a>
+
+      <a href="profile.html">
+        PROFILE
+      </a>
+
+      <a href="contact.html">
+        CONTACT
+      </a>
+
+    </nav>
+
+
+    <!-- 漫画ビューア -->
+
+    <section class="manga-viewer">
+
+
+      <!-- 作品説明 -->
+
+      <div class="reader-heading">
+
+        <h2>
+          また会ったら
+        </h2>
+
+
+        <p>
+          ２０２６年秋制作
+        </p>
+
+
+        <p>
+          百合合同誌に寄稿した、露悪百合短編です。<br>
+          ご了承ください。
+        </p>
+
+
+        <p>
+          左をクリックして読んでください
+        </p>
+
+      </div>
+
+
+      <!-- 漫画 -->
+
+      <div class="manga-stage">
+
+
+        <!--
+          左ページ
+
+          PC見開き時
+          3、5、7ページ
+        -->
+
+        <img
+          id="left-page"
+          class="manga-page hidden-page"
+          alt=""
+        >
+
+
+        <!--
+          右ページ
+
+          最初は1Pを単独表示
+        -->
+
+        <img
+          id="right-page"
+          class="manga-page single-page"
+          src="mataattara_001 (2).jpg"
+          alt="また会ったら 1ページ"
+        >
+
+
+        <!-- 左半分 → 次へ -->
+
+        <button
+          type="button"
+          class="page-zone next-zone"
+          aria-label="次のページ"
+        ></button>
+
+
+        <!-- 右半分 → 戻る -->
+
+        <button
+          type="button"
+          class="page-zone prev-zone"
+          aria-label="前のページ"
+        ></button>
+
+      </div>
+
+
+      <!-- ページ番号 -->
+
+      <p id="page-count">
+        1 / 7
+      </p>
+
+
+      <p class="reader-help">
+        左クリック：次へ　右側クリック：戻る
+      </p>
+
+
+      <!-- X共有 -->
+
+      <a
+        class="x-share"
+        href="https://x.com/intent/tweet?text=%E6%BC%AB%E7%94%BB%E3%80%8E%E3%81%BE%E3%81%9F%E4%BC%9A%E3%81%A3%E3%81%9F%E3%82%89%E3%80%8F%EF%BD%9C%E5%A4%9A%E6%B2%BB%E5%B7%9D%E6%99%B4%E4%BA%BA&url=https%3A%2F%2Ftajikawaharuto.github.io%2Fmataattara.html"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Xで共有
+      </a>
+
+
+    </section>
+
+  </main>
+
+
+  <script>
+
+
+    /* =========================
+       ページ設定
+    ========================= */
+
+
+    const FIRST_PAGE = 1;
+
+    const LAST_PAGE = 7;
+
+
+    let currentPage =
+      FIRST_PAGE;
+
+
+
+    /* =========================
+       実ファイル名
+    ========================= */
+
+
+    const pageFiles = [
+
+      "mataattara_001 (2).jpg",
+
+      "mataattara_003.jpg",
+
+      "mataattara_004.jpg",
+
+      "mataattara_005.jpg",
+
+      "mataattara_006.jpg",
+
+      "mataattara_007.jpg",
+
+      "mataattara_008 (2).jpg"
+
+    ];
+
+
+
+    /* =========================
+       HTML要素
+    ========================= */
+
+
+    const leftPage =
+      document.getElementById(
+        "left-page"
+      );
+
+
+    const rightPage =
+      document.getElementById(
+        "right-page"
+      );
+
+
+    const pageCount =
+      document.getElementById(
+        "page-count"
+      );
+
+
+    const nextZone =
+      document.querySelector(
+        ".next-zone"
+      );
+
+
+    const prevZone =
+      document.querySelector(
+        ".prev-zone"
+      );
+
+
+
+    /* =========================
+       ページ番号から
+       実ファイル名を取得
+    ========================= */
+
+
+    function filename(
+      pageNumber
+    ) {
+
+
+      return pageFiles[
+        pageNumber - 1
+      ];
+
+    }
+
+
+
+    /* =========================
+       スマホ縦判定
+    ========================= */
+
+
+    function isPhonePortrait() {
+
+      return window
+        .matchMedia(
+          "(max-width: 700px) and (orientation: portrait)"
+        )
+        .matches;
+
+    }
+
+
+
+    /* =========================
+       左ページを隠す
+    ========================= */
+
+
+    function hideLeftPage() {
+
+
+      leftPage
+        .classList
+        .add(
+          "hidden-page"
+        );
+
+
+      leftPage
+        .removeAttribute(
+          "src"
+        );
+
+    }
+
+
+
+    /* =========================
+       単ページ表示
+    ========================= */
+
+
+    function showSinglePage(
+      pageNumber
+    ) {
+
+
+      hideLeftPage();
+
+
+      rightPage
+        .classList
+        .add(
+          "single-page"
+        );
+
+
+      rightPage.src =
+        filename(
+          pageNumber
+        );
+
+
+      rightPage.alt =
+        `また会ったら ${pageNumber}ページ`;
+
+
+      pageCount.textContent =
+        `${pageNumber} / ${LAST_PAGE}`;
+
+
+      preload(
+        pageNumber + 1
+      );
+
+
+      preload(
+        pageNumber - 1
+      );
+
+    }
+
+
+
+    /* =========================
+       見開き表示
+    ========================= */
+
+
+    function showSpread(
+      pageNumber
+    ) {
+
+
+      /*
+        日本漫画なので
+
+        左 | 右
+
+        3  | 2
+        5  | 4
+        7  | 6
+      */
+
+
+      const rightNumber =
+        pageNumber % 2 === 0
+          ? pageNumber
+          : pageNumber - 1;
+
+
+      const leftNumber =
+        rightNumber + 1;
+
+
+
+      /* 左ページ */
+
+
+      if (
+        leftNumber <= LAST_PAGE
+      ) {
+
+
+        leftPage
+          .classList
+          .remove(
+            "hidden-page"
+          );
+
+
+        leftPage.src =
+          filename(
+            leftNumber
+          );
+
+
+        leftPage.alt =
+          `また会ったら ${leftNumber}ページ`;
+
+
+      } else {
+
+
+        hideLeftPage();
+
+      }
+
+
+
+      /* 右ページ */
+
+
+      rightPage
+        .classList
+        .remove(
+          "single-page"
+        );
+
+
+      rightPage.src =
+        filename(
+          rightNumber
+        );
+
+
+      rightPage.alt =
+        `また会ったら ${rightNumber}ページ`;
+
+
+
+      /* ページ番号 */
+
+
+      if (
+        leftNumber <= LAST_PAGE
+      ) {
+
+
+        pageCount.textContent =
+          `${rightNumber} - ${leftNumber} / ${LAST_PAGE}`;
+
+
+      } else {
+
+
+        pageCount.textContent =
+          `${rightNumber} / ${LAST_PAGE}`;
+
+      }
+
+
+
+      /* 周辺画像を先読み */
+
+
+      preload(
+        rightNumber + 2
+      );
+
+
+      preload(
+        rightNumber + 3
+      );
+
+
+      preload(
+        rightNumber - 1
+      );
+
+
+      preload(
+        rightNumber - 2
+      );
+
+    }
+
+
+
+    /* =========================
+       現在位置を表示
+    ========================= */
+
+
+    function render() {
+
+
+      /*
+        最初の1Pは単独。
+
+        スマホ縦は
+        全ページ単独。
+      */
+
+
+      if (
+        currentPage === FIRST_PAGE ||
+        isPhonePortrait()
+      ) {
+
+
+        showSinglePage(
+          currentPage
+        );
+
+
+      } else {
+
+
+        showSpread(
+          currentPage
+        );
+
+      }
+
+    }
+
+
+
+    /* =========================
+       次へ
+    ========================= */
+
+
+    function nextPage() {
+
+
+      /*
+        スマホ縦
+        1ページずつ進む
+      */
+
+
+      if (
+        isPhonePortrait()
+      ) {
+
+
+        if (
+          currentPage <
+          LAST_PAGE
+        ) {
+
+
+          currentPage++;
+
+
+          render();
+
+        }
+
+
+        return;
+
+      }
+
+
+
+      /*
+        PC
+
+        1
+        ↓
+        3 | 2
+        ↓
+        5 | 4
+        ↓
+        7 | 6
+      */
+
+
+      if (
+        currentPage ===
+        FIRST_PAGE
+      ) {
+
+
+        currentPage = 2;
+
+
+        render();
+
+
+        return;
+
+      }
+
+
+
+      const rightNumber =
+        currentPage % 2 === 0
+          ? currentPage
+          : currentPage - 1;
+
+
+
+      /*
+        6・7表示中なら
+        それ以上進まない
+      */
+
+
+      if (
+        rightNumber + 1 >=
+        LAST_PAGE
+      ) {
+
+
+        return;
+
+      }
+
+
+
+      currentPage =
+        rightNumber + 2;
+
+
+      render();
+
+    }
+
+
+
+    /* =========================
+       戻る
+    ========================= */
+
+
+    function prevPage() {
+
+
+      /*
+        スマホ縦
+        1ページずつ戻る
+      */
+
+
+      if (
+        isPhonePortrait()
+      ) {
+
+
+        if (
+          currentPage >
+          FIRST_PAGE
+        ) {
+
+
+          currentPage--;
+
+
+          render();
+
+        }
+
+
+        return;
+
+      }
+
+
+
+      /*
+        1Pなら
+        それ以上戻らない
+      */
+
+
+      if (
+        currentPage <=
+        FIRST_PAGE
+      ) {
+
+
+        return;
+
+      }
+
+
+
+      const rightNumber =
+        currentPage % 2 === 0
+          ? currentPage
+          : currentPage - 1;
+
+
+
+      /*
+        3 | 2
+        ↓
+        1
+      */
+
+
+      if (
+        rightNumber <= 2
+      ) {
+
+
+        currentPage =
+          FIRST_PAGE;
+
+
+      } else {
+
+
+        /*
+          その他は
+          見開きを1つ戻る
+        */
+
+
+        currentPage =
+          rightNumber - 2;
+
+      }
+
+
+      render();
+
+    }
+
+
+
+    /* =========================
+       画像先読み
+    ========================= */
+
+
+    function preload(
+      pageNumber
+    ) {
+
+
+      if (
+        pageNumber <
+          FIRST_PAGE ||
+        pageNumber >
+          LAST_PAGE
+      ) {
+
+
+        return;
+
+      }
+
+
+      const image =
+        new Image();
+
+
+      image.src =
+        filename(
+          pageNumber
+        );
+
+    }
+
+
+
+    /* =========================
+       クリック
+    ========================= */
+
+
+    nextZone
+      .addEventListener(
+        "click",
+        nextPage
+      );
+
+
+    prevZone
+      .addEventListener(
+        "click",
+        prevPage
+      );
+
+
+
+    /* =========================
+       キーボード
+    ========================= */
+
+
+    document
+      .addEventListener(
+        "keydown",
+        event => {
+
+
+          /*
+            日本漫画方向
+
+            ← 次へ
+            → 戻る
+          */
+
+
+          if (
+            event.key ===
+            "ArrowLeft"
+          ) {
+
+
+            nextPage();
+
+          }
+
+
+          if (
+            event.key ===
+            "ArrowRight"
+          ) {
+
+
+            prevPage();
+
+          }
+
+        }
+      );
+
+
+
+    /* =========================
+       スマホ回転
+    ========================= */
+
+
+    window
+      .addEventListener(
+        "resize",
+        render
+      );
+
+
+
+    /* =========================
+       最初に1P表示
+    ========================= */
+
+
+    render();
+
+
+  </script>
+
+</body>
+
+</html>
